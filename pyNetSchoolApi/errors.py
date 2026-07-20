@@ -1,0 +1,2 @@
+class ReturnDataError(Exception):
+    pass

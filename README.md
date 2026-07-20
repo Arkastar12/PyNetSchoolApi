@@ -1,1 +1,3 @@
 # PyNetSchoolApi
+
+    import pyNetSchoolApi
