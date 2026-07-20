@@ -1,3 +1,3 @@
-from .main import test
+from .main import school
 
-__all__ = ["test"]
+__all__ = ["school"]

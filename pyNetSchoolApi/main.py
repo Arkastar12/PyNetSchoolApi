@@ -1,5 +1,5 @@
 import requests
-import errors
+from pyNetSchoolApi import errors
 
 class school:
 
