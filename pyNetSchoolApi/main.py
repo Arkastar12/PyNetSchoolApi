@@ -22,8 +22,23 @@ class school:
     def getSettings(self) -> dict:
         url = f'https://{self.host}/webapi/mysettings'
         answer = requests.get(url, headers=self.headers)
-        print(answer.text)
         try:
             return answer.json()
+        except Exception as e:
+            raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
+    
+    def getAnnouncements(self) -> list:
+        url = f'https://{self.host}/webapi/announcements?take=-1'
+        answer = requests.get(url, headers=self.headers)
+        try:
+            return answer.json()
+        except Exception as e:
+            raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
+    
+    def downloadFileById(self, id):
+        url = f'https://{self.host}/webapi/attachments/{id}'
+        answer = requests.get(url, headers=self.headers)
+        try:
+            return answer.content
         except Exception as e:
             raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
