@@ -54,3 +54,12 @@ class school:
             return answer.json()
         except Exception as e:
             raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
+    
+    def checkTokenExpired(self) -> bool:
+        """Истек ли токен"""
+        url = f'https://{self.host}/webapi/context/expired?token={self.At}'
+        answer = requests.get(url, headers=self.headers)
+        try:
+            return answer.json()
+        except Exception as e:
+            raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
