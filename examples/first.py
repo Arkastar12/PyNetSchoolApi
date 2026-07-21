@@ -11,3 +11,6 @@ school.downloadFileById(123) # Получить содержимое файла 
 # Скачать файл с сервера
 with open('file.txt', 'wb') as f:
     f.write(school.downloadFileById(123)) 
+
+#Расписание
+print(school.getDiary('schoolId', 'studentId', 'vers', 'weekStart', 'weekEnd', 'withLaAssigns', 'yearId'))

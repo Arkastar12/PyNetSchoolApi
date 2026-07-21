@@ -20,6 +20,7 @@ class school:
         }
     
     def getSettings(self) -> dict:
+        """Получить настройки текущего пользователя"""
         url = f'https://{self.host}/webapi/mysettings'
         answer = requests.get(url, headers=self.headers)
         try:
@@ -28,6 +29,7 @@ class school:
             raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
     
     def getAnnouncements(self) -> list:
+        """Получить список обьявлений"""
         url = f'https://{self.host}/webapi/announcements?take=-1'
         answer = requests.get(url, headers=self.headers)
         try:
@@ -36,9 +38,19 @@ class school:
             raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
     
     def downloadFileById(self, id):
+        """Получить содержимое файла по ID"""
         url = f'https://{self.host}/webapi/attachments/{id}'
         answer = requests.get(url, headers=self.headers)
         try:
             return answer.content
+        except Exception as e:
+            raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
+    
+    def getDiary(self, schoolId, studentId, vers, weekStart, weekEnd, withLaAssigns: str, yearId) -> dict:
+        """Получить расписание"""
+        url = f'https://{self.host}/webapi/student/diary?schoolId={schoolId}&studentId={studentId}&vers={vers}&weekEnd={weekEnd}&weekStart={weekStart}&withLaAssigns={withLaAssigns}&yearId={yearId}'
+        answer = requests.get(url, headers=self.headers)
+        try:
+            return answer.json()
         except Exception as e:
             raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
