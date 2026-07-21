@@ -63,3 +63,12 @@ class school:
             return answer.json()
         except Exception as e:
             raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')
+    
+    def getState(self) -> dict:
+        """Получение текущей информации (уведомления, новые сообщения и тд)"""
+        url = f'https://{self.host}/webapi/context/state'
+        answer = requests.get(url, headers=self.headers)
+        try:
+            return answer.json()
+        except Exception as e:
+            raise errors.ReturnDataError(f'Check your AT, and Cookie! Answer text: {answer.text}')

@@ -17,3 +17,6 @@ print(school.getDiary('schoolId', 'studentId', 'vers', 'weekStart', 'weekEnd', '
 
 #Проверка живой ли токен
 print(school.checkTokenExpired()) # возвращает True или False
+
+#Получение информации (новые сообщения, уведомления, активные сессии)
+print(school.getState())
